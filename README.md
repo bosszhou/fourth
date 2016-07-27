@@ -1,4 +1,4 @@
-# iosselect
+# 四级联动
 #webapp模仿ios下拉菜单  
 html下拉菜单select在安卓和IOS下表现不一样，iosselect正是为统一下拉菜单样式而生
 
@@ -19,13 +19,17 @@ demo------使用demo,说明如下：
     
     three------三级下拉菜单，省市区选择三级联动
     
+    four-------四级目前支持,只需要修改一下数据来源,然后对一些方法做简单的修改即可。。。
+    
     rem------手机端部分解决方案会使用viewport缩放，这个时候我们需要添加一些样式，页面在缩放的情况下正常显示
     
     datepicker------时间选择器，通过方法筛选数据，实现三级联动，ajax获取数据时可参考此例，但是ajax需要同步获取数据
 ##使用说明
     ###API
     new IosSelect(level, data, options)
-    level: 选择的层级 1 2 3 最多支持3层
+    <!--目前支持四级联动,但是需要稍作修改-->
+    
+    
 	data: [oneLevelArray[, twoLevelArray[, threeLevelArray]]]
 	options:
 	     callback: 选择完毕后的回调函数 必选
@@ -38,12 +42,18 @@ demo------使用demo,说明如下：
 	     oneLevelId: 第一级选中id 可选
 	     twoLevelId: 第二级选中id 可选
 	     threeLevelId: 第三级选中id 可选
+	     fouthLevelId:第四级选中id,可选
 	####参数说明
 	level: 级联等级，支持1,2,3 必选项
 	data: 数组，前三项分别对应级联1,2,3项，每一项又是一个数组或方法，如果是一级下拉菜单，data长度为1
+	<!--这里的data可以为空,原来的插件是直接把数据写在js里面,然后通过data传递过去
+	    现在是可以不使用data参数,而是在js里面请求地址数据(根据不同的需要,大家可以自己去实现请求地址数据)
+	-->
+	
+	
 	    如果是数组：
 	        每一项数组中包含一系列对象，每个对象必须要有id,作为该条数据在该项数组中的唯一标识，parentId是可选属性，作为关联的标志
-	options.callback(selectOneObj[[, selectTwoObj], selectThreeObj]) 每个级联选中项，包含对应数据的所有字段及dom对象
+	options.callback(selectOneObj[[, selectTwoObj], selectThreeObj,selectFourObj]) 每个级联选中项，包含对应数据的所有字段及dom对象
 	    如果是方法：
 	    传入一个方法，在方法中获取数据
     ####以地址选择为例：
@@ -187,7 +197,7 @@ http://zhoushengfe.com/iosselect/demo/one/bank.html
 
 http://zhoushengfe.com/iosselect/demo/two/sanguokill.html
 
-三级级联，省市区选择
+三级级联，省市区选择(现在可以支持四级,等有时间完善)
 
 http://zhoushengfe.com/iosselect/demo/three/area.html
 
@@ -200,4 +210,4 @@ http://zhoushengfe.com/iosselect/demo/rem/bank.html
 http://zhoushengfe.com/iosselect/demo/datepicker/date.html
     
     
-    如果有使用问题，可加QQ群：295805025
+
